@@ -11,9 +11,10 @@
 
 #app .container {
   width: 376px;
-  height: 666px;
+  max-height: 900px;
+  height: 70%;
+  overflow-y: auto;
   z-index: 100;
-
   background: white;
   border-radius: 3px;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, .9);
@@ -21,5 +22,9 @@
 
 #app .container-view {
   padding: 20px;
+}
+
+#app .main{
+  /* background-color: #E2E2E2; */
 }
 

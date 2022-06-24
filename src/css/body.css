@@ -4,6 +4,7 @@ html, body, h1, h2, h3, ul, li {
   border: 0;
   font: inherit;
   font-size: 100%;
+  list-style: none;
 }
 
 body {
@@ -12,4 +13,9 @@ body {
   font-size: 13px;
   color: #333333;
   line-height: 1;
+}
+
+li{
+  padding-top:5px;
+  padding-bottom:5px;
 }

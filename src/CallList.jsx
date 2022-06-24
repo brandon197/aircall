@@ -11,10 +11,12 @@ import { Button, ButtonGroup } from "@mui/material";
 import axios from "axios";
 
 import CallItem from "./CallItem.jsx";
+import CallDetail from "./CallDetail.jsx";
 
 const CallList = () => {
   const [list, setList] = useState([]);
   const [showArchived, setShowArchived] = useState(false);
+  const [selectedId, setSelectedID] = useState(null);
   const [showDialog, setShowDialog] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -30,12 +32,7 @@ const CallList = () => {
     setList(res.data.filter((e) => e.is_archived == showArchived));
     setLoading(false);
   }
-  async function fetchCall(id) {
-    const res = await axios.get(
-      `https://aircall-job.herokuapp.com/activities/${id}`
-    );
-    console.log(res.data);
-  }
+
   useEffect(() => {
     fetchCalls();
   }, [showArchived]);
@@ -55,6 +52,9 @@ const CallList = () => {
           Archived
         </Button>
       </ButtonGroup>
+      <Dialog onClose={() => handleClose()} open={showDialog}>
+        <CallDetail obj={selectedId} />
+      </Dialog>
       {list.length < 1 ? (
         <div
           style={{
@@ -68,26 +68,20 @@ const CallList = () => {
           No items to Display
         </div>
       ) : (
-        <div>
-          <Dialog
-            onClose={handleClose}
-            open={showDialog}
-            style={{ width: "100%" }}
-          >
-            <DialogTitle>Title</DialogTitle>
-            <div>Hi</div>
-          </Dialog>
-          <List sx={{ width: "100%", bgcolor: "background.paper" }}>
-            {list.map((item, index) => (
+        <List sx={{ width: "100%", bgcolor: "background.paper", pt: 0 }}>
+          {list.map((item, index) => (
+            <div>
+              {/* <hr /> */}
               <CallItem
                 dialogSetter={(e) => setShowDialog(e)}
+                currentId={(e) => setSelectedID(e)}
                 fetchCalls={() => fetchCalls()}
                 key={index}
                 obj={item}
               />
-            ))}
-          </List>
-        </div>
+            </div>
+          ))}
+        </List>
       )}
     </div>
   );

@@ -17,14 +17,37 @@
   z-index: 100;
   background: white;
   border-radius: 3px;
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, .9);
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.9);
 }
 
 #app .container-view {
   padding: 20px;
 }
 
-#app .main{
-  /* background-color: #E2E2E2; */
+#app .main {
+  display: flex;
+  flex-direction: column;
 }
 
+#default-banner {
+  height: 100%;
+  margin-top: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: grey;
+}
+
+#call-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.call-details {
+  padding-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}

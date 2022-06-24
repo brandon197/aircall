@@ -2,12 +2,10 @@ import React, { useEffect, useState } from "react";
 
 import List from "@mui/material/List";
 import Dialog from "@mui/material/Dialog";
-import DialogTitle from "@mui/material/DialogTitle";
-
-import "regenerator-runtime";
-
+import Divider from "@mui/material/Divider";
 import { Button, ButtonGroup } from "@mui/material";
 
+import "regenerator-runtime";
 import axios from "axios";
 
 import CallItem from "./CallItem.jsx";
@@ -18,19 +16,21 @@ const CallList = () => {
   const [showArchived, setShowArchived] = useState(false);
   const [selectedId, setSelectedID] = useState(null);
   const [showDialog, setShowDialog] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   const handleClose = () => {
     setShowDialog(false);
   };
 
   async function fetchCalls() {
-    setLoading(true);
     const res = await axios.get("https://aircall-job.herokuapp.com/activities");
     console.log(res.data);
-
-    setList(res.data.filter((e) => e.is_archived == showArchived));
-    setLoading(false);
+    setList(
+      res.data
+        .sort((a, b) =>
+          a.created_at < b.created_at ? 1 : b.created_at < a.created_at ? -1 : 0
+        )
+        .filter((e) => e.is_archived == showArchived)
+    );
   }
 
   useEffect(() => {
@@ -56,27 +56,17 @@ const CallList = () => {
         <CallDetail obj={selectedId} />
       </Dialog>
       {list.length < 1 ? (
-        <div
-          style={{
-            height: "100%",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            color: "grey",
-          }}
-        >
-          No items to Display
-        </div>
+        <div id="default-banner">No items to Display</div>
       ) : (
         <List sx={{ width: "100%", bgcolor: "background.paper", pt: 0 }}>
           {list.map((item, index) => (
             <div>
-              {/* <hr /> */}
+              <Divider />
               <CallItem
+                key={index}
                 dialogSetter={(e) => setShowDialog(e)}
                 currentId={(e) => setSelectedID(e)}
                 fetchCalls={() => fetchCalls()}
-                key={index}
                 obj={item}
               />
             </div>

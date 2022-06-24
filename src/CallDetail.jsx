@@ -32,6 +32,7 @@ const CallDetail = ({ obj }) => {
       seconds > 0 ? "and " + seconds + " seconds" : ""
     }`;
   };
+
   return (
     <Card sx={{ width: "auto", p: 2 }}>
       <DialogTitle style={{ textAlign: "center" }}>{obj.from}</DialogTitle>
@@ -43,15 +44,7 @@ const CallDetail = ({ obj }) => {
         <li>Call to: {obj.to}</li>
         <li>AirCall: {obj.via}</li>
       </ul>
-      <div
-        style={{
-          paddingTop: "1rem",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          textAlign: "center",
-        }}
-      >
+      <div className="call-details">
         <div style={{ marginRight: "10px" }}>{setIcon()}</div>
         {obj.call_type} on {DateTime.fromISO(obj.created_at).toFormat("ff")}
       </div>

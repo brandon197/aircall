@@ -13,7 +13,6 @@ import CallReceivedIcon from "@mui/icons-material/CallReceived";
 import VoicemailIcon from "@mui/icons-material/Voicemail";
 import CallMissedIcon from "@mui/icons-material/CallMissed";
 import CallMadeIcon from "@mui/icons-material/CallMade";
-import { Badge } from "@mui/material";
 
 import { DateTime } from "luxon";
 
@@ -53,13 +52,7 @@ const CallItem = ({ obj, dialogSetter, currentId, fetchCalls }) => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "flex-start",
-      }}
-    >
+    <div id="call-item">
       <div style={{ display: "flex" }}>
         <ListItemButton dense={true} onClick={() => handleDialogToggle()}>
           <ListItemAvatar>

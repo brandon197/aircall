@@ -5,13 +5,10 @@ import Header from "./Header.jsx";
 import CallList from "./CallList.jsx";
 
 const App = () => {
-  
   return (
     <div className="container">
       <Header />
-      <div className="main">
-        <CallList />
-      </div>
+      <CallList />
     </div>
   );
 };

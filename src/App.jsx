@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import Header from "./Header.jsx";
-import CallList from "./CallList.jsx";
+import Header from "./Components/Header.jsx";
+import CallList from "./Components/CallList.jsx";
 
 const App = () => {
   return (
